@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | Connectly</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/messages.css">
+</head>
+
+<body>
+
+    <div class="messages-page">
+
+        <!-- TOP HEADER -->
+        <header class="messages-header">
+            <a href="dashboard.html" class="messages-logo">
+                <span class="logo-icon">C</span>
+                <span>connectly</span>
+            </a>
+
+            <a href="dashboard.html" class="back-home">
+                ← Back to Home
+            </a>
+        </header>
+
+        <!-- MAIN CHAT AREA -->
+        <main class="messages-container">
+
+            <!-- CONVERSATION SIDEBAR -->
+            <aside class="conversation-sidebar">
+
+                <div class="conversation-heading">
+                    <h2>Messages</h2>
+                    <p>Your private conversations</p>
+                </div>
+
+                <div class="conversation-search">
+                    <input
+                        type="text"
+                        id="conversationSearch"
+                        placeholder="Search conversations..."
+                    >
+                </div>
+
+                <div id="conversationList" class="conversation-list">
+                    <p class="empty-conversations">
+                        Loading conversations...
+                    </p>
+                </div>
+
+            </aside>
+
+            <!-- CHAT WINDOW -->
+            <section class="chat-window">
+
+                <div id="chatPlaceholder" class="chat-placeholder">
+                    <div class="chat-placeholder-icon">💬</div>
+                    <h2>Your messages, all in one place</h2>
+                    <p>Select a conversation to start chatting.</p>
+                </div>
+
+                <div id="activeChat" class="active-chat hidden">
+
+                    <div class="chat-header">
+                        <div class="chat-user-info">
+                            <img
+                                id="chatUserAvatar"
+                                src="images/default-avatar.png"
+                                alt="User"
+                            >
+
+                            <div>
+                                <h3 id="chatUsername">Username</h3>
+                                <span>Connectly conversation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="messageList" class="message-list">
+                    </div>
+
+                    <form id="messageForm" class="message-form">
+                        <input
+                            type="text"
+                            id="messageInput"
+                            placeholder="Write a message..."
+                            maxlength="2000"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button type="submit" id="sendMessageBtn">
+                            Send ➤
+                        </button>
+                    </form>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- SOCKET.IO CLIENT -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- CHAT JAVASCRIPT -->
+    <script src="js/messages.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connectly | User Profile</title>
+
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">C</span>
+            <span>connectly</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="dashboard.html" class="back-btn">
+                ← Back to Dashboard
+            </a>
+
+            <button id="logout-btn" class="logout-btn">
+                Log out
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN PROFILE -->
+    <main class="profile-container">
+
+        <div id="profile-loading" class="loading">
+            Loading profile...
+        </div>
+
+        <div id="profile-error" class="error-message" hidden></div>
+
+        <section id="profile-content" hidden>
+
+            <!-- PROFILE HEADER -->
+            <div class="profile-card">
+
+                <div class="profile-top">
+
+                    <div class="profile-avatar">
+                        <span id="profile-initial">U</span>
+
+                        <img
+                            id="profile-picture"
+                            src=""
+                            alt="Profile picture"
+                            hidden
+                        >
+                    </div>
+
+                    <div class="profile-information">
+
+                        <h1 id="profile-username">Username</h1>
+
+                        <p id="profile-bio">
+                            No bio added yet.
+                        </p>
+
+                        <p class="joined-date" id="profile-joined"></p>
+
+                        
+<div class="profile-actions">
+
+    <button
+        id="follow-btn"
+        class="follow-btn"
+        hidden
+    >
+        Follow
+    </button>
+
+    <button
+        type="button"
+        id="message-btn"
+        class="message-profile-btn"
+        hidden
+    >
+        💬 Message
+    </button>
+
+    <span id="own-profile-label" hidden>
+        Your Profile
+    </span>
+
+</div>
+
+
+                    </div>
+
+                </div>
+
+                <!-- PROFILE STATISTICS -->
+                
+<div class="profile-stats">
+    <div class="profile-stat">
+        <strong id="profile-post-count">0</strong>
+        <span>Posts</span>
+    </div>
+
+    <button type="button" class="profile-stat profile-stat-button"
+        id="show-followers-btn">
+        <strong id="profile-follower-count">0</strong>
+        <span>Followers</span>
+    </button>
+
+    <button type="button" class="profile-stat profile-stat-button"
+        id="show-following-btn">
+        <strong id="profile-following-count">0</strong>
+        <span>Following</span>
+    </button>
+</div>
+
+<!-- FOLLOWERS / FOLLOWING POPUP -->
+<div id="follow-list-modal" class="follow-list-modal" hidden>
+    <div class="follow-list-content">
+
+        <div class="follow-list-header">
+            <h2 id="follow-list-title">Followers</h2>
+
+            <button type="button" id="close-follow-list"
+                class="close-follow-list">&times;</button>
+        </div>
+
+
+<input
+    type="text"
+    id="follow-list-search"
+    class="follow-list-search"
+    placeholder="Search people..."
+    autocomplete="off"
+/>
+
+<div id="follow-list-items" class="follow-list-items">
+    <p>Loading users...</p>
+</div>
+
+
+
+    </div>
+</div>
+
+
+            </div>
+
+            <!-- USER POSTS -->
+            <section class="posts-section">
+
+                <div class="section-heading">
+                    <h2>Posts</h2>
+                    <p>Explore published moments</p>
+                </div>
+
+                <div id="user-posts" class="posts-grid"></div>
+
+                <div id="no-posts" class="empty-posts" hidden>
+                    <h3>No posts yet</h3>
+                    <p>This user hasn't shared anything yet.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <script src="js/profile.js"></script>
+
+</body>
+</html>

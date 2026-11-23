@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connectly | Home</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a href="dashboard.html" class="brand">
+        <span class="brand-icon">C</span>
+        connectly
+    </a>
+
+    <div class="topbar-right">
+
+    <div class="notification-wrapper">
+        <button
+            type="button"
+            id="notification-bell"
+            class="notification-bell"
+            aria-label="Notifications"
+            aria-expanded="false"
+        >
+            🔔
+            <span id="notification-badge" hidden>0</span>
+        </button>
+
+        <div id="notification-panel" class="notification-panel" hidden>
+            <div class="notification-header">
+                <h3>Notifications</h3>
+                <button type="button" id="mark-all-read">
+                    Mark all read
+                </button>
+            </div>
+
+            <div id="notification-list">
+                <p class="notification-empty">Loading notifications...</p>
+            </div>
+        </div>
+    </div>
+
+    <span id="header-username">Loading...</span>
+    <button id="logout-btn" class="logout-btn">Log out</button>
+
+</div>
+</header>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+        <h3>MENU</h3>
+
+        
+<a href="dashboard.html" class="nav-item active">⌂ &nbsp; Home</a>
+<a href="#feed" class="nav-item">▤ &nbsp; My Feed</a>
+<a href="#saved-posts" id="saved-posts-link" class="nav-item">🔖 &nbsp; Saved Posts</a>
+<a href="messages.html" class="nav-item">💬 &nbsp; Messages</a>
+<a href="#create-post" class="nav-item">＋ &nbsp; Create Post</a>
+<a href="#" id="my-profile-link" class="nav-item">♙ &nbsp; My Profile</a>
+
+
+        <div class="sidebar-note">
+            <span>💜</span>
+            <h4>Stay Connected</h4>
+            <p>Share your moments and make meaningful connections.</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <section class="welcome-section">
+            <div>
+                <p class="small-heading">YOUR SOCIAL SPACE</p>
+                <h1>Welcome back, <span id="welcome-username">Friend</span>!</h1>
+                <p>See what's happening in your community today.</p>
+            </div>
+            <div class="welcome-emoji">✨</div>
+        </section>
+
+
+        <!-- STORIES SECTION -->
+        <section class="stories-section card" id="stories-section">
+            <div class="stories-heading">
+                <div>
+                    <h2>Stories</h2>
+                    <p>Share moments that disappear after 24 hours</p>
+                </div>
+
+                <button type="button" id="add-story-btn">
+                    + Add Story
+                </button>
+            </div>
+
+            <div class="stories-container" id="stories-container">
+                <div class="story-loading">
+                    Loading stories...
+                </div>
+            </div>
+        </section>
+
+        <!-- ADD STORY MODAL -->
+<div class="story-modal" id="story-modal" hidden>
+    <div class="story-modal-content">
+
+        <div class="story-modal-header">
+            <h2>Create Story</h2>
+            <button type="button" id="close-story-modal">&times;</button>
+        </div>
+
+
+        <form id="story-form">
+
+            <label for="story-image-input">
+                Choose Story Image
+            </label>
+
+            <input
+                type="file"
+                id="story-image-input"
+                accept="image/jpeg,image/png,image/webp"
+                required
+            >
+
+            <div id="story-preview-container" hidden>
+                <img id="story-preview" alt="Story preview">
+            </div>
+
+            <label for="story-caption">
+                Caption (optional)
+            </label>
+
+            <textarea
+                id="story-caption"
+                maxlength="150"
+                placeholder="Write something about your story..."
+            ></textarea>
+
+            <p id="story-caption-count">0 / 150</p>
+
+            <p id="story-upload-message"></p>
+
+            <button type="submit" id="publish-story-btn">
+                Publish Story
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+
+        <section class="composer card" id="create-post">
+            <div class="section-heading">
+                <h2>Create a post</h2>
+                <span>Share something with your community</span>
+            </div>
+
+            <textarea
+                id="post-content"
+                placeholder="What's on your mind today?"
+                maxlength="2000"
+            ></textarea>
+
+            <div class="post-image-tools">
+    <input
+        type="file"
+        id="post-image-input"
+        accept="image/jpeg,image/png,image/webp"
+        hidden
+    >
+
+    <label for="post-image-input" class="image-attach-btn">
+    📷 Add Photo
+</label>
+
+    <span id="post-image-name">No image selected</span>
+</div>
+
+<div id="post-image-preview-container" hidden>
+    <img id="post-image-preview" alt="Selected post image preview">
+    <button type="button" id="remove-post-image">
+        Remove Image ✕
+    </button>
+</div>
+
+            <div class="composer-bottom">
+                <span id="character-count">0 / 2000</span>
+                <button id="publish-btn" class="primary-btn">
+                    Publish Post →
+                </button>
+            </div>
+
+            <p id="post-message" class="status-message"></p>
+        </section>
+
+        <section class="feed-section" id="feed">
+            <div class="feed-heading">
+                <div>
+                    <h2>Your Feed</h2>
+                    <p>Latest posts from the community</p>
+                </div>
+                <button id="refresh-btn" class="refresh-btn">↻ Refresh</button>
+            </div>
+
+            <div id="posts-container">
+                <div class="card loading">Loading your feed...</div>
+            </div>
+        </section>
+
+
+<section class="feed-section" id="saved-posts-section" hidden>
+    <div class="feed-heading">
+        <div>
+            <h2>Saved Posts 🔖</h2>
+            <p>Posts you've bookmarked</p>
+        </div>
+
+        <button id="refresh-saved-btn" class="refresh-btn">
+            ↻ Refresh
+        </button>
+    </div>
+
+    <div id="saved-posts-container">
+        <div class="card loading">Loading saved posts...</div>
+    </div>
+</section>
+
+
+    </main>
+
+    <aside class="right-sidebar">
+
+        <section class="card profile-card" id="profile-card">
+            <div class="profile-avatar" id="profile-avatar">
+    <span id="profile-avatar-initial">C</span>
+    <img id="profile-avatar-image" alt="Profile picture" hidden>
+</div>
+
+<div class="picture-upload">
+    <input
+        type="file"
+        id="profile-picture-input"
+        accept="image/jpeg,image/png,image/webp"
+        hidden
+    >
+
+    <button type="button" id="choose-picture-btn">
+        Change Photo
+    </button>
+
+    <button type="button" id="upload-picture-btn" disabled>
+        Upload Photo
+    </button>
+
+    <p id="picture-upload-message"></p>
+</div>
+            <h3 id="profile-username">Loading...</h3>
+            <p id="profile-email"></p>
+
+<p id="profile-bio">Add a short bio...</p>
+
+<button
+    type="button"
+    id="edit-profile-btn"
+    class="profile-edit-btn"
+>
+    Edit Profile
+</button>
+
+<form id="profile-edit-form" class="profile-edit-form" hidden>
+
+    <label for="edit-username">Username</label>
+    <input
+        type="text"
+        id="edit-username"
+        minlength="3"
+        maxlength="20"
+        required
+    >
+
+    <label for="edit-bio">Bio</label>
+    <textarea
+        id="edit-bio"
+        maxlength="160"
+        placeholder="Tell people something about yourself..."
+    ></textarea>
+
+    <div class="profile-form-actions">
+        <button type="submit" class="primary-btn">
+            Save Changes
+        </button>
+
+        <button type="button" id="cancel-profile-edit">
+            Cancel
+        </button>
+    </div>
+
+    <p id="profile-edit-message"></p>
+
+</form>
+
+            
+<div class="profile-stats">
+    <div>
+        <strong id="post-total">0</strong>
+        <span>Posts</span>
+    </div>
+
+    <div>
+        <strong id="follower-total">0</strong>
+        <span>Followers</span>
+    </div>
+
+    <div>
+        <strong id="following-total">0</strong>
+        <span>Following</span>
+    </div>
+</div>
+
+        </section>
+
+        <section class="card tips-card">
+            <span>💡</span>
+            <h3>Community Tip</h3>
+            <p>Be kind, share positive moments and respect everyone's opinions.</p>
+        </section>
+
+
+<section class="card people-card">
+    <h3>People to Connect</h3>
+    <p class="people-subtitle">Discover new members</p>
+
+    <input
+        type="text"
+        id="user-search"
+        placeholder="Search people..."
+    >
+
+    <div id="people-list">
+        <p class="loading">Finding people...</p>
+    </div>
+</section>
+
+
+    </aside>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<!-- STORY VIEWER -->
+<div class="story-viewer" id="story-viewer" hidden>
+    <div class="story-viewer-content">
+
+        <button type="button" id="close-story-viewer">
+            &times;
+        </button>
+
+        <div class="story-viewer-header">
+            <strong id="viewer-username"></strong>
+            <span id="viewer-time"></span>
+        </div>
+
+        <img id="viewer-story-image" alt="Story">
+
+        <p id="viewer-story-caption"></p>
+
+        <!-- STORY REPLY FORM -->
+        <form id="story-reply-form" class="story-reply-form" hidden>
+            <input
+                type="text"
+                id="story-reply-input"
+                placeholder="Reply to this story..."
+                maxlength="500"
+                autocomplete="off"
+                required
+            >
+            <button type="submit" id="send-story-reply">
+                Send
+            </button>
+        </form>
+
+        <p id="story-reply-message"></p>
+
+        <!-- VIEW STORY REPLIES -->
+<button
+    type="button"
+    id="view-story-replies"
+    class="view-story-replies"
+    hidden
+>
+    💬 View Replies
+</button>
+
+<div id="story-replies-container" hidden></div>
+
+        <div class="story-viewer-navigation">
+            <button type="button" id="previous-story">❮</button>
+            <button type="button" id="next-story">❯</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
